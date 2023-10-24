@@ -1,0 +1,11 @@
+build:
+  zip:
+    composer:
+      enabled: false
+    assets:
+      enabled: false
+    pack:
+      excludes:
+        paths:
+          - var
+          - .gitignore

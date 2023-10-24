@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Basic Configuration</title>
+        <title lang="de-DE">Grundeinstellungen</title>
+
+        <input-field type="bool">
+            <name>enabled</name>
+            <label>Enable access protection for storefront</label>
+            <label lang="de-DE">Zugriffsschutz für Storefront aktivieren</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field>
+            <name>realm</name>
+            <label>Information to display in the password dialog box</label>
+            <label lang="de-DE">Informationen, die im Passwort-Dialogfeld angezeigt werden</label>
+            <defaultValue>Password protected.</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Exceptions</title>
+        <title lang="de-DE">Ausnahmen</title>
+
+        <component name="sw-entity-multi-id-select">
+            <name>aclRoles</name>
+            <label>User roles that are allowed to access the storefront</label>
+            <label lang="de-DE">Benutzerrollen, die Zugriff auf die Storefront erhalten</label>
+            <helpText lang="de-DE">Wenn keine Rolle ausgewählt wird, dürfen alle Rollen zugreifen.</helpText>
+            <helpText>When no roles are selected, all roles will have access by default.</helpText>
+            <entity>acl_role</entity>
+        </component>
+
+        <component name="sw-tagged-field">
+            <name>allowedIps</name>
+            <label>IP addresses that are allowed to access the storefront</label>
+            <label lang="de-DE">IP-Adressen, die Zugriff auf die Storefront erhalten</label>
+            <helpText lang="de-DE">Wenn die IP-Adresse des Besuchers übereinstimmt, wird keine Authentisierung verlangt.</helpText>
+            <helpText>When the visitor's IP address matches, no authentication is required.</helpText>
+        </component>
+    </card>
+</config>

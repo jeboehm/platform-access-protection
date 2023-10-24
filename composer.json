@@ -1,0 +1,40 @@
+{
+  "name": "jeboehm/platform-access-protection",
+  "description": "Protects your storefront from unauthorized access. Ideal for test systems.",
+  "type": "shopware-platform-plugin",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Jeffrey Böhm"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.4"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "JeboehmAccessProtection\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "JeboehmAccessProtection\\JeboehmAccessProtection",
+    "copyright": "Jeffrey Böhm",
+    "label": {
+      "de-DE": "Storefront Zugangsschutz",
+      "en-GB": "Storefront Access Protection"
+    },
+    "description": {
+      "de-DE": "Ideal für Testsysteme: dieses Plugin schützt die Storefront vor unbefugtem Zugriff, indem bei Seitenaufruf die Zugangsdaten eines System-Benutzers abgefragt werden.",
+      "en-GB": "Ideal for test systems: this plugin protects the storefront from unauthorized access by requesting the access data of a system user when a page is called up."
+    },
+    "manufacturerLink": {
+      "de-DE": "https://jeffrey-boehm.de",
+      "en-GB": "https://jeffrey-boehm.de"
+    },
+    "supportLink": {
+      "de-DE": "https://jeffrey-boehm.de",
+      "en-GB": "https://jeffrey-boehm.de"
+    }
+  }
+}

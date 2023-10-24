@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <defaults autowire="true" autoconfigure="true"/>
+        <prototype namespace="JeboehmAccessProtection\" resource="../../"
+                   exclude="../../{DependencyInjection,Resources,Migration,JeboehmAccessProtection.php}"/>
+    </services>
+</container>
