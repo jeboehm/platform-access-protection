@@ -22,6 +22,11 @@ final class ConfigValueRepository
         return $this->systemConfigService->getString('JeboehmAccessProtection.config.realm', $salesChannelId);
     }
 
+    public function getUnauthorizedMessage(string $salesChannelId): string
+    {
+        return $this->systemConfigService->getString('JeboehmAccessProtection.config.unauthorizedMessage', $salesChannelId);
+    }
+
     /**
      * @return string[]
      */

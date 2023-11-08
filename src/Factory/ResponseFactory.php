@@ -18,7 +18,7 @@ final class ResponseFactory implements ResponseFactoryInterface
         $headerValue = sprintf('Basic realm="%s", charset="UTF-8"', $this->configValueRepository->getRealm($salesChannelId));
 
         return new Response(
-            'Unauthorized',
+            $this->configValueRepository->getUnauthorizedMessage($salesChannelId),
             Response::HTTP_UNAUTHORIZED,
             ['WWW-Authenticate' => $headerValue]
         );
