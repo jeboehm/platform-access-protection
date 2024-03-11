@@ -30,7 +30,7 @@ final class UserRepository implements UserRepositoryInterface
             $qb
                 ->leftJoin('u', '`acl_user_role`', 'r', 'u.id = r.user_id')
                 ->andWhere(
-                    $qb->expr()->orX(
+                    $qb->expr()->or(
                         $qb->expr()->eq('u.admin', 1),
                         $qb->expr()->in('r.acl_role_id', ':roleIds')
                     )
@@ -40,7 +40,7 @@ final class UserRepository implements UserRepositoryInterface
 
         $userPassword = $qb->executeQuery()->fetchOne();
 
-        if ($userPassword === false) {
+        if (!\is_string($userPassword)) {
             throw new \OutOfBoundsException(sprintf('User with username "%s" not found', $username));
         }
 

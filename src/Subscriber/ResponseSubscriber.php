@@ -3,41 +3,46 @@ declare(strict_types=1);
 
 namespace Jeboehm\AccessProtection\Subscriber;
 
-use Jeboehm\AccessProtection\Repository\ConfigValueRepository;
+use Jeboehm\AccessProtection\Factory\ResponseFactoryInterface;
+use Jeboehm\AccessProtection\Service\AccessValidatorInterface;
+use Shopware\Core\Framework\Event\BeforeSendResponseEvent;
+use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\PlatformRequest;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\ResponseEvent;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 final class ResponseSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly ConfigValueRepository $configValueRepository,
+        private readonly AccessValidatorInterface $accessValidator,
+        private readonly ResponseFactoryInterface $responseFactory,
     ) {
     }
 
     public static function getSubscribedEvents(): array
     {
-        return [ResponseEvent::class => 'onResponse'];
+        return [BeforeSendResponseEvent::class => 'onBeforeSendResponse'];
     }
 
-    public function onResponse(ResponseEvent $event): void
+    public function onBeforeSendResponse(BeforeSendResponseEvent $event): void
     {
-        $salesChannelId = $event->getRequest()->attributes->getAlnum(PlatformRequest::ATTRIBUTE_SALES_CHANNEL_ID);
+        $request = $event->getRequest();
+        $salesChannelId = $request->attributes->getAlnum(PlatformRequest::ATTRIBUTE_SALES_CHANNEL_ID);
 
-        if ($salesChannelId === '') {
+        if (!Uuid::isValid($salesChannelId)) {
             // assume that this is no storefront request
             return;
         }
 
-        if (!$this->configValueRepository->isEnabled($salesChannelId)) {
+        if ($event->getResponse()->getStatusCode() === Response::HTTP_NOT_FOUND) {
             return;
         }
 
-        $event->getResponse()->setCache(
-            [
-                'private' => true,
-                'no_store' => true,
-            ]
-        );
+        if ($this->accessValidator->isAllowed($request, $salesChannelId)) {
+            return;
+        }
+
+        $event->setResponse($this->responseFactory->createResponse($salesChannelId));
     }
 }

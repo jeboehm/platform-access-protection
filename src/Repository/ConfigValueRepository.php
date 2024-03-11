@@ -27,6 +27,7 @@ final class ConfigValueRepository
      */
     public function getRoleIds(string $salesChannelId): array
     {
+        /** @var string[] $roleIds */
         $roleIds = $this->systemConfigService->get('JeboehmAccessProtection.config.aclRoles', $salesChannelId);
 
         if (!\is_array($roleIds)) {
@@ -41,6 +42,7 @@ final class ConfigValueRepository
      */
     public function getAllowedIps(string $salesChannelId): array
     {
+        /** @var string[] $allowedIps */
         $allowedIps = $this->systemConfigService->get('JeboehmAccessProtection.config.allowedIps', $salesChannelId);
 
         if (!\is_array($allowedIps)) {

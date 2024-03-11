@@ -25,9 +25,10 @@ final class AccessValidatorService implements AccessValidatorInterface
         }
 
         $allowedIps = $this->configValueRepository->getAllowedIps($salesChannelId);
+        $clientIp = $request->getClientIp();
 
         foreach ($allowedIps as $allowedIp) {
-            if (IpUtils::checkIp($request->getClientIp(), $allowedIp)) {
+            if ($clientIp !== null && IpUtils::checkIp($clientIp, $allowedIp)) {
                 return true;
             }
         }

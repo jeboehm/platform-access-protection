@@ -17,10 +17,18 @@ final class ResponseFactory implements ResponseFactoryInterface
     {
         $headerValue = sprintf('Basic realm="%s", charset="UTF-8"', $this->configValueRepository->getRealm($salesChannelId));
 
-        return new Response(
+        $response = new Response(
             'Unauthorized',
             Response::HTTP_UNAUTHORIZED,
             ['WWW-Authenticate' => $headerValue]
         );
+        $response->setCache(
+            [
+                'private' => true,
+                'no_store' => true,
+            ]
+        );
+
+        return $response;
     }
 }
