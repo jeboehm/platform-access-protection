@@ -35,11 +35,15 @@ final class ResponseSubscriber implements EventSubscriberInterface
             return;
         }
 
-        if ($event->getResponse()->getStatusCode() === Response::HTTP_NOT_FOUND) {
+        $allowed = $this->accessValidator->isAllowed($request, $salesChannelId);
+
+        if (!$allowed && $event->getResponse()->getStatusCode() === Response::HTTP_NOT_FOUND) {
+            $event->getResponse()->setContent('Not found.');
+
             return;
         }
 
-        if ($this->accessValidator->isAllowed($request, $salesChannelId)) {
+        if ($allowed) {
             return;
         }
 
