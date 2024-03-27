@@ -3,13 +3,10 @@
 name: Build extension
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   build:
-    uses: FriendsOfShopware/actions/.github/workflows/store-shopware-cli.yml@main
+    uses: shopware/github-actions/.github/workflows/store-release.yml@main
     with:
       extensionName: JeboehmAccessProtection
     secrets:
