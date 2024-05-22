@@ -1,16 +1,23 @@
 platform-access-protection
 ==========================
 
-platform-access-protection is a Shopware 6 plugin allows you to password protect
-your Shopware Storefront.
-This is useful for staging environments or for shops that are not yet ready to be
-visible to the public.
+**Platform Access Protection for Shopware 6**
 
-The plugin uses the users from the Shopware Administration to login. It's also possible
-to whitelist IP addresses, so that they can access the storefront without a password.
+The Platform Access Protection plugin allows you to safeguard your Shopware storefront with
+a password, ensuring that only authorized users can access it. This feature is particularly
+useful for test environments or online stores that are not yet ready for public visibility.
 
-You can restrict which users are allowed to access by specifying one or more user roles.
-Admins are always allowed.
+**How it works**
+
+The plugin seamlessly integrates with your existing Shopware administration panel, leveraging
+its user base to authenticate login attempts. Additionally, you can skip the password prompt by
+whitelisting specific IP addresses (IPv4 and IPv6) or subnet prefixes, providing flexibility in
+managing access control.
+
+**User Role Restriction**
+
+To fine-tune access control, you can specify one or more user roles that are allowed to access the
+storefront. Admins will always have unrestricted access.
 
 Configure the plugin in the plugin settings.
 
