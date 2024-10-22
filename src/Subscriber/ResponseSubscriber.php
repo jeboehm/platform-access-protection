@@ -6,9 +6,9 @@ namespace Jeboehm\AccessProtection\Subscriber;
 use Jeboehm\AccessProtection\Factory\ResponseFactoryInterface;
 use Jeboehm\AccessProtection\Service\AccessValidatorInterface;
 use Shopware\Core\Framework\Event\BeforeSendResponseEvent;
+use Shopware\Core\Framework\Routing\RequestTransformerInterface;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\PlatformRequest;
-use Shopware\Storefront\Framework\Routing\RequestTransformer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +18,7 @@ final class ResponseSubscriber implements EventSubscriberInterface
     public function __construct(
         private readonly AccessValidatorInterface $accessValidator,
         private readonly ResponseFactoryInterface $responseFactory,
-        private readonly RequestTransformer $requestTransformer,
+        private readonly RequestTransformerInterface $requestTransformer,
     ) {
     }
 
