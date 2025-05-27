@@ -11,7 +11,9 @@ use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\PlatformRequest;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\HttpCache\SurrogateInterface;
 
 final readonly class ResponseSubscriber implements EventSubscriberInterface
 {
@@ -29,6 +31,10 @@ final readonly class ResponseSubscriber implements EventSubscriberInterface
 
     public function onBeforeSendResponse(BeforeSendResponseEvent $event): void
     {
+        if ($event->getRequest()->attributes->get('_sw_esi') === true) {
+            return;
+        }
+
         $request = $this->requestTransformer->transform(clone $event->getRequest());
         $salesChannelId = $request->attributes->getAlnum(PlatformRequest::ATTRIBUTE_SALES_CHANNEL_ID);
 
