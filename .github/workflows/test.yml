@@ -1,20 +1,38 @@
 name: Test
 on:
   push:
-    tags-ignore:
-      - '*'
+    branches:
+      - main
   pull_request:
-  schedule:
-    - cron: "5 15 * * *"
 
 jobs:
   phpstan:
     uses: shopware/github-actions/.github/workflows/phpstan.yml@main
     with:
       extensionName: JeboehmAccessProtection
-      shopwareVersion: v6.6.0.1
 
   zip:
     uses: shopware/github-actions/.github/workflows/build-zip.yml@main
     with:
       extensionName: JeboehmAccessProtection
+
+#  phpunit:
+#    uses: shopware/github-actions/.github/workflows/phpunit.yml@main
+#    with:
+#      extensionName: JeboehmAccessProtection
+
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Run Check
+        uses: shopware/github-actions/extension-verifier@main
+        with:
+          action: check

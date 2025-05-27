@@ -8,11 +8,11 @@ use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Framework\Uuid\Uuid;
 
-final class UserRepository implements UserRepositoryInterface
+final readonly class UserRepository implements UserRepositoryInterface
 {
     public function __construct(
-        private readonly Connection $connection,
-        private readonly ConfigValueRepository $configValueRepository,
+        private Connection $connection,
+        private ConfigValueRepository $configValueRepository,
     ) {
     }
 
@@ -31,21 +31,22 @@ final class UserRepository implements UserRepositoryInterface
                 ->leftJoin('u', '`acl_user_role`', 'r', 'u.id = r.user_id')
                 ->andWhere(
                     $qb->expr()->or(
-                        $qb->expr()->eq('u.admin', 1),
+                        $qb->expr()->eq('u.admin', ':isAdmin'),
                         $qb->expr()->in('r.acl_role_id', ':roleIds')
                     )
                 )
-                ->setParameter('roleIds', Uuid::fromHexToBytesList($roleIds), ArrayParameterType::STRING);
+                ->setParameter('roleIds', Uuid::fromHexToBytesList($roleIds), ArrayParameterType::STRING)
+                ->setParameter('isAdmin', '1');
         }
 
         $userPassword = $qb->executeQuery()->fetchOne();
 
         if (!\is_string($userPassword)) {
-            throw new \OutOfBoundsException(sprintf('User with username "%s" not found', $username));
+            throw new \OutOfBoundsException(\sprintf('User with username "%s" not found', $username));
         }
 
         if (!password_verify($password, $userPassword)) {
-            throw new \OutOfBoundsException(sprintf('Wrong password for username "%s".', $username));
+            throw new \OutOfBoundsException(\sprintf('Wrong password for username "%s".', $username));
         }
     }
 }

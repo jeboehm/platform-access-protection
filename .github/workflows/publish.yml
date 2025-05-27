@@ -1,11 +1,11 @@
 ---
 
-name: Build extension
+name: Publish extension
 on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build_and_publish:
     uses: shopware/github-actions/.github/workflows/store-release.yml@main
     with:
       extensionName: JeboehmAccessProtection

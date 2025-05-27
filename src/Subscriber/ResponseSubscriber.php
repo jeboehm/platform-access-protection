@@ -13,12 +13,12 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class ResponseSubscriber implements EventSubscriberInterface
+final readonly class ResponseSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly AccessValidatorInterface $accessValidator,
-        private readonly ResponseFactoryInterface $responseFactory,
-        private readonly RequestTransformerInterface $requestTransformer,
+        private AccessValidatorInterface $accessValidator,
+        private ResponseFactoryInterface $responseFactory,
+        private RequestTransformerInterface $requestTransformer,
     ) {
     }
 

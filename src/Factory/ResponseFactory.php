@@ -6,16 +6,16 @@ namespace Jeboehm\AccessProtection\Factory;
 use Jeboehm\AccessProtection\Repository\ConfigValueRepository;
 use Symfony\Component\HttpFoundation\Response;
 
-final class ResponseFactory implements ResponseFactoryInterface
+final readonly class ResponseFactory implements ResponseFactoryInterface
 {
     public function __construct(
-        private readonly ConfigValueRepository $configValueRepository
+        private ConfigValueRepository $configValueRepository
     ) {
     }
 
     public function createResponse(string $salesChannelId): Response
     {
-        $headerValue = sprintf('Basic realm="%s", charset="UTF-8"', $this->configValueRepository->getRealm($salesChannelId));
+        $headerValue = \sprintf('Basic realm="%s", charset="UTF-8"', $this->configValueRepository->getRealm($salesChannelId));
 
         $response = new Response(
             'Unauthorized',

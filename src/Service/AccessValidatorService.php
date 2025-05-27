@@ -9,12 +9,12 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\IpUtils;
 use Symfony\Component\HttpFoundation\Request;
 
-final class AccessValidatorService implements AccessValidatorInterface
+final readonly class AccessValidatorService implements AccessValidatorInterface
 {
     public function __construct(
-        private readonly ConfigValueRepository $configValueRepository,
-        private readonly UserRepositoryInterface $userRepository,
-        private readonly LoggerInterface $logger,
+        private ConfigValueRepository $configValueRepository,
+        private UserRepositoryInterface $userRepository,
+        private LoggerInterface $logger,
     ) {
     }
 
