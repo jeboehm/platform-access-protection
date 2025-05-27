@@ -5,10 +5,10 @@ namespace Jeboehm\AccessProtection\Repository;
 
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
-final class ConfigValueRepository
+final readonly class ConfigValueRepository
 {
     public function __construct(
-        private readonly SystemConfigService $systemConfigService
+        private SystemConfigService $systemConfigService
     ) {
     }
 
@@ -27,7 +27,7 @@ final class ConfigValueRepository
      */
     public function getRoleIds(string $salesChannelId): array
     {
-        /** @var string[] $roleIds */
+        /** @var string[]|null $roleIds */
         $roleIds = $this->systemConfigService->get('JeboehmAccessProtection.config.aclRoles', $salesChannelId);
 
         if (!\is_array($roleIds)) {
@@ -42,7 +42,7 @@ final class ConfigValueRepository
      */
     public function getAllowedIps(string $salesChannelId): array
     {
-        /** @var string[] $allowedIps */
+        /** @var string[]|null $allowedIps */
         $allowedIps = $this->systemConfigService->get('JeboehmAccessProtection.config.allowedIps', $salesChannelId);
 
         if (!\is_array($allowedIps)) {

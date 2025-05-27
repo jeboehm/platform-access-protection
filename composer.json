@@ -2,7 +2,7 @@
     "name": "jeboehm/platform-access-protection",
     "description": "Protects your Shopware 6 storefront from unauthorized access. Ideal for test systems.",
     "type": "shopware-platform-plugin",
-    "version": "1.2.4",
+    "version": "1.3.0",
     "authors": [
         {
             "name": "Jeffrey Böhm",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "shopware/core": "~6.6.0"
+        "shopware/core": "~6.6.0||~6.7.0"
     },
     "license": "MIT",
     "autoload": {
