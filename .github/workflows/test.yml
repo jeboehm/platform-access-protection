@@ -7,12 +7,12 @@ on:
 
 jobs:
   phpstan:
-    uses: shopware/github-actions/.github/workflows/phpstan.yml@5a7a60b85f5beca11c13d36a964fd3b96a74bceb
+    uses: shopware/github-actions/.github/workflows/phpstan.yml@a155002e7da62ef2572697fe7d2fe981b7acef78
     with:
       extensionName: JeboehmAccessProtection
 
   zip:
-    uses: shopware/github-actions/.github/workflows/build-zip.yml@5a7a60b85f5beca11c13d36a964fd3b96a74bceb
+    uses: shopware/github-actions/.github/workflows/build-zip.yml@a155002e7da62ef2572697fe7d2fe981b7acef78
     with:
       extensionName: JeboehmAccessProtection
 
@@ -33,6 +33,6 @@ jobs:
           node-version: 'lts/*'
 
       - name: Run Check
-        uses: shopware/github-actions/extension-verifier@5a7a60b85f5beca11c13d36a964fd3b96a74bceb
+        uses: shopware/github-actions/extension-verifier@a155002e7da62ef2572697fe7d2fe981b7acef78
         with:
           action: check
