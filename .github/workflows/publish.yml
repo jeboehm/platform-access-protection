@@ -1,9 +1,9 @@
----
-
 name: Publish extension
 on:
   workflow_dispatch:
-
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build_and_publish:
     uses: shopware/github-actions/.github/workflows/store-release.yml@5a7a60b85f5beca11c13d36a964fd3b96a74bceb
