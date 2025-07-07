@@ -1,0 +1,14 @@
+<p>Das Plugin kann über den Shopware App Manager installiert werden.<br />
+Dort wird es ebenfalls konfiguriert. Alle möglichen Optionen werden an den Feldern ausführlich<br />
+erklärt.</p>
+<h2 id="ip-whitelisting">IP-Whitelisting</h2>
+<p>Es können IP-Adressen konfiguriert werden, die immer Zugriff auf die Storefront haben,<br />
+ohne sich authentifizieren zu müssen.<br />
+Unterstützt werden IPv4 und IPv6. Es können auch Subnetzmasken oder IPv6-Prefixe angegeben werden.</p>
+<p><strong>Besonderheit bei der Verwendung eines Proxy-Servers oder eines Loadbalancers</strong><br />
+Damit das IP-Whitelisting bei Verwendung eines zusätzlichen Reverse-Proxy-Servers korrekt<br />
+funktioniert, ist es erforderlich, die IP-Adresse des Proxys in der .env-Konfigurationsdatei<br />
+(im Shopware-Hauptverzeichnis) als Trusted Proxy zu hinterlegen. Dies ist über den Eintrag<br />
+<em>TRUSTED_PROXIES=IP_des_Proxys</em> möglich.</p>
+<p>Alternativ kann dies auch über die PHP-Einstellungen geschehen. Weitere Informationen, wie<br />
+Du dies PHP-seitig umsetzen kannst, findest Du unter <a href="https://symfony.com/doc/current/deployment/proxies.html#solution-settrustedproxies">https://symfony.com/doc/current/deployment/proxies.html#solution-settrustedproxies</a></p>

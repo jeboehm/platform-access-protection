@@ -1,105 +1,90 @@
-build:
-  zip:
-    composer:
-      enabled: false
-    assets:
-      enabled: false
-    pack:
-      excludes:
-        paths:
-          - var
-          - .gitignore
-          - src/Resources/store
-          - .github
-          - .shopware-extension.yml
-
 store:
-  availabilities:
-    - German
-    - International
-  default_locale: en_GB
-  localizations:
-    - de_DE
-    - en_GB
-  categories:
-    - Administration
-  type: extension
-  icon: src/Resources/config/plugin.png
-  automatic_bugfix_version_compatibility: true
-  description:
-    de: file:src/Resources/store/de.md
-    en: file:src/Resources/store/en.md
-  installation_manual:
-    de: file:src/Resources/store/de_manual.md
-    en: file:src/Resources/store/en_manual.md
-  tags:
-    de:
-      - Tools
-      - Testsystem
-      - Passwortschutz
-    en:
-      - tools
-      - password protection
-      - test system
-  videos:
-    de: [ ]
-    en: [ ]
-  highlights:
-    de:
-      - Storefront mit Passwort schützen
-      - IP-Adressen freigeben
-      - keine separate Benutzerpflege notwendig
-    en:
-      - Protect storefront with password
-      - Allow IP addresses
-      - No separate user management necessary
-  features:
-    de:
-      - Passwortschutz für Storefront
-      - Freigabe von IP-Adressen
-      - Freigabe von bestimmten Benutzerrollen
-      - keine separate Benutzerpflege notwendig
-    en:
-      - Password protection for storefront
-      - Allow IP addresses
-      - Allow specific user roles
-      - no separate user management necessary
-  faq:
-    de: [ ]
-    en: [ ]
-  images:
-    - file: src/Resources/store/screenshot_settings_en.png
-      activate:
-        de: false
-        en: true
-      preview:
-        de: false
-        en: true
-      priority: 10
-    - file: src/Resources/store/screenshot_settings_de.png
-      activate:
-          de: true
-          en: false
-      preview:
-          de: true
-          en: false
-      priority: 10
-    - file: src/Resources/store/screenshot_login_en.png
-      activate:
-          de: false
-          en: true
-      preview:
-          de: false
-          en: false
-      priority: 0
-    - file: src/Resources/store/screenshot_login_de.png
-      activate:
-          de: true
-          en: false
-      preview:
-          de: false
-          en: false
-      priority: 0
-
+    availabilities:
+        - German
+        - International
+    default_locale: en_GB
+    localizations:
+        - de_DE
+        - en_GB
+    categories:
+        - Administration
+    type: extension
+    icon: src/Resources/store/icon.png
+    automatic_bugfix_version_compatibility: true
+    meta_title:
+        de: Storefront Access Protection – Passwortschutz
+        en: Storefront Access Protection – Password & IP Lock
+    meta_description:
+        de: Schütze deine Shopfront mit Passwort, IP‑Whitelist & Admin‑Rollen. Ideal für Test‑ oder Staging‑Umgebungen – einfach konfigurierbar, ohne eigenes Nutzer‑Management.
+        en: Protect your storefront with a password, IP whitelist, and admin roles. Perfect for staging or test environments. Easy setup, no custom user management needed.
+    description:
+        de: file:src/Resources/store/description.de.html
+        en: file:src/Resources/store/description.en.html
+    installation_manual:
+        de: file:src/Resources/store/installation_manual.de.html
+        en: file:src/Resources/store/installation_manual.en.html
+    tags:
+        de:
+            - Storefront-Schutz
+            - Passwortschutz
+            - IP-Whitelist
+            - Staging-Umgebung
+            - Sicherheit
+        en:
+            - Storefront Protection
+            - Password Protection
+            - IP Whitelist
+            - Staging Environment
+            - Security
+    videos:
+        de: []
+        en: []
+    highlights:
+        de:
+            - Passwortschutz für die gesamte Storefront
+            - IP-Whitelist für gezielten Zugriff
+            - Ausnahmen für Admins und autorisierte Rollen
+            - Ideal für Staging- und Wartungsumgebungen
+            - Einfache Konfiguration direkt im Admin-Bereich
+        en:
+            - Password protection for the entire storefront
+            - IP whitelist for controlled access
+            - Exemptions for admins and authorized roles
+            - Perfect for staging and maintenance environments
+            - Quick setup without extra modules
+    features:
+        de:
+            - Passwortschutz für Storefront
+            - Freigabe von IP-Adressen
+            - Freigabe von bestimmten Benutzerrollen
+            - keine separate Benutzerpflege notwendig
+        en:
+            - Password protection for storefront
+            - Allow IP addresses
+            - Allow specific user roles
+            - no separate user management necessary
+    faq:
+        de: []
+        en: []
+    image_directory: src/Resources/store/images
+build:
+    zip:
+        composer:
+            enabled: true
+        assets:
+            enabled: true
+            enable_es_build_for_admin: false
+            enable_es_build_for_storefront: false
+            disable_sass: true
+            npm_strict: false
+        pack:
+            excludes:
+                paths:
+                    - var
+                    - .gitignore
+                    - src/Resources/store
+                    - .github
+                    - .shopware-extension.yml
+                    - renovate.json
 changelog:
-  enabled: true
+    enabled: true
