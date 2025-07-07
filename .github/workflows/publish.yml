@@ -6,7 +6,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build_and_publish:
-    uses: shopware/github-actions/.github/workflows/store-release.yml@5a7a60b85f5beca11c13d36a964fd3b96a74bceb
+    uses: shopware/github-actions/.github/workflows/store-release.yml@641b51465fa77989b8bbe345665681212be3e385
     with:
       extensionName: JeboehmAccessProtection
     secrets:
