@@ -4,34 +4,31 @@ on:
     branches:
       - main
   pull_request:
-
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   phpstan:
     uses: shopware/github-actions/.github/workflows/phpstan.yml@641b51465fa77989b8bbe345665681212be3e385
     with:
       extensionName: JeboehmAccessProtection
-
   zip:
     uses: shopware/github-actions/.github/workflows/build-zip.yml@641b51465fa77989b8bbe345665681212be3e385
     with:
       extensionName: JeboehmAccessProtection
-
-#  phpunit:
-#    uses: shopware/github-actions/.github/workflows/phpunit.yml@main
-#    with:
-#      extensionName: JeboehmAccessProtection
-
+      #  phpunit:
+      #    uses: shopware/github-actions/.github/workflows/phpunit.yml@main
+      #    with:
+      #      extensionName: JeboehmAccessProtection
   check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-
       - name: Setup Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 'lts/*'
-
       - name: Run Check
         uses: shopware/github-actions/extension-verifier@641b51465fa77989b8bbe345665681212be3e385
         with:
