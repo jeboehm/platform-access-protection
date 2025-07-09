@@ -21,7 +21,7 @@ storefront. Admins will always have unrestricted access.
 
 Configure the plugin in the plugin settings.
 
-![Screenshot, showing the plugin settings](https://raw.githubusercontent.com/jeboehm/platform-access-protection/main/src/Resources/store/screenshot_settings_en.png)
+![Screenshot, showing the plugin settings](https://raw.githubusercontent.com/jeboehm/platform-access-protection/main/src/Resources/store/images/en/10.png)
 
 Links:
 ------
