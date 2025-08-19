@@ -9,11 +9,11 @@ concurrency:
   cancel-in-progress: true
 jobs:
   phpstan:
-    uses: shopware/github-actions/.github/workflows/phpstan.yml@641b51465fa77989b8bbe345665681212be3e385
+    uses: shopware/github-actions/.github/workflows/phpstan.yml@16a16ee8ea4062f3b339b42e31fbddb7fa6fbbce
     with:
       extensionName: JeboehmAccessProtection
   zip:
-    uses: shopware/github-actions/.github/workflows/build-zip.yml@641b51465fa77989b8bbe345665681212be3e385
+    uses: shopware/github-actions/.github/workflows/build-zip.yml@16a16ee8ea4062f3b339b42e31fbddb7fa6fbbce
     with:
       extensionName: JeboehmAccessProtection
       #  phpunit:
@@ -30,6 +30,6 @@ jobs:
         with:
           node-version: 'lts/*'
       - name: Run Check
-        uses: shopware/github-actions/extension-verifier@641b51465fa77989b8bbe345665681212be3e385
+        uses: shopware/github-actions/extension-verifier@16a16ee8ea4062f3b339b42e31fbddb7fa6fbbce
         with:
           action: check
